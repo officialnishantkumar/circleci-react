@@ -1,11 +1,13 @@
 version: 2.1
-jobs:
-  build_elixir:
-    machine:
-      image: ubuntu-2004:202104-01
-      docker_layer_caching: true
-    steps:
-      - checkout
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
+workflows:
+  build:
+    jobs:
+      build_elixir:
+        machine:
+          image: ubuntu-2004:202104-01
+          docker_layer_caching: true
+        steps:
+          - checkout
+          - run:
+              name: build Elixir image
+              command: docker build -t circleci/elixir:example .
